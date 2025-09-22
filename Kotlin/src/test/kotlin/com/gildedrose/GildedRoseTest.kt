@@ -28,7 +28,7 @@ internal class GildedRoseTest {
         val app = GildedRose(items)
 
         (1..days).map {
-            app.updateQuality()
+            app.processItemsForDay()
         }
 
         assertEquals(name, app.items[0].name)
