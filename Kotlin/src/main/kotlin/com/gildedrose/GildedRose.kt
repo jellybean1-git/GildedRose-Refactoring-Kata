@@ -5,6 +5,7 @@ import com.gildedrose.ItemName.BACKSTAGE_PASSES
 import com.gildedrose.ItemName.SULFURAS
 
 const val MAX_QUALITY = 50
+
 class GildedRose(val items: List<Item>) {
 
     fun updateQuality() {
@@ -17,19 +18,15 @@ class GildedRose(val items: List<Item>) {
                 }
             } else {
                 if (items[i].quality < MAX_QUALITY) {
-                    items[i].quality = items[i].quality + 1
+                    increaseQuality(items[i])
 
                     if (items[i].name == BACKSTAGE_PASSES.label) {
                         if (items[i].sellIn < 11) {
-                            if (items[i].quality < MAX_QUALITY) {
-                                items[i].quality = items[i].quality + 1
-                            }
+                            increaseQuality(items[i])
                         }
 
                         if (items[i].sellIn < 6) {
-                            if (items[i].quality < MAX_QUALITY) {
-                                items[i].quality = items[i].quality + 1
-                            }
+                            increaseQuality(items[i])
                         }
                     }
                 }
@@ -51,13 +48,16 @@ class GildedRose(val items: List<Item>) {
                         items[i].quality = items[i].quality - items[i].quality
                     }
                 } else {
-                    if (items[i].quality < MAX_QUALITY) {
-                        items[i].quality = items[i].quality + 1
-                    }
+                    increaseQuality(items[i])
                 }
             }
         }
     }
 
+    fun increaseQuality(item: Item) {
+        if (item.quality < MAX_QUALITY) {
+            item.quality = item.quality + 1
+        }
+    }
 }
 
