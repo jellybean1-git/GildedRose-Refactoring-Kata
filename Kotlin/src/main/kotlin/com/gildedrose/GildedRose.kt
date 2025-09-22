@@ -32,9 +32,7 @@ class GildedRose(val items: List<Item>) {
                 }
             }
 
-            if (items[i].name != SULFURAS.label) {
-                items[i].sellIn = items[i].sellIn - 1
-            }
+            updateSellIn(items[i])
 
             if (items[i].sellIn < 0) {
                 if (items[i].name != AGED_BRIE.label) {
@@ -54,14 +52,20 @@ class GildedRose(val items: List<Item>) {
         }
     }
 
-    fun increaseQuality(item: Item) {
+    private fun increaseQuality(item: Item) {
         if (item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1
         }
     }
 
-    fun decreaseQuality(item: Item) {
+    private fun decreaseQuality(item: Item) {
         item.quality = item.quality - item.quality
+    }
+
+    private fun updateSellIn(item: Item) {
+        if (item.name != SULFURAS.label) {
+            item.sellIn = item.sellIn - 1
+        }
     }
 }
 
