@@ -3,6 +3,7 @@ package com.gildedrose
 import com.gildedrose.ItemName.AGED_BRIE
 import com.gildedrose.ItemName.BACKSTAGE_PASSES
 import com.gildedrose.ItemName.SULFURAS
+import com.gildedrose.domain.BackstagePass
 
 const val MAX_QUALITY = 50
 
@@ -10,16 +11,20 @@ class GildedRose(val items: List<Item>) {
 
     fun updateQuality() {
         for (item in items) {
-            if (item.name != AGED_BRIE.label && item.name != BACKSTAGE_PASSES.label) {
+            val isAgedBrie = item.name == AGED_BRIE.label
+            val isBackstagePasses = item.name == BACKSTAGE_PASSES.label
+            val isSulfuras = item.name == SULFURAS.label
+
+            if (!isAgedBrie && !isBackstagePasses) {
                 if (item.quality > 0) {
-                    if (item.name != SULFURAS.label) {
+                    if (!isSulfuras) {
                         decreaseQuality(item)
                     }
                 }
             } else {
                 increaseQuality(item)
 
-                if (item.name == BACKSTAGE_PASSES.label) {
+                if (isBackstagePasses) {
                     if (item.sellIn < 11) {
                         increaseQuality(item)
                     }
@@ -33,10 +38,10 @@ class GildedRose(val items: List<Item>) {
             updateSellIn(item)
 
             if (item.sellIn < 0) {
-                if (item.name != AGED_BRIE.label) {
-                    if (item.name != BACKSTAGE_PASSES.label) {
+                if (!isAgedBrie) {
+                    if (!isBackstagePasses) {
                         if (item.quality > 0) {
-                            if (item.name != SULFURAS.label) {
+                            if (!isSulfuras) {
                                 decreaseQuality(item)
                             }
                         }
