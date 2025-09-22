@@ -13,7 +13,7 @@ class GildedRose(val items: List<Item>) {
             if (items[i].name != AGED_BRIE.label && items[i].name != BACKSTAGE_PASSES.label) {
                 if (items[i].quality > 0) {
                     if (items[i].name != SULFURAS.label) {
-                        items[i].quality = items[i].quality - 1
+                        decreaseQuality(items[i])
                     }
                 }
             } else {
@@ -41,11 +41,11 @@ class GildedRose(val items: List<Item>) {
                     if (items[i].name != BACKSTAGE_PASSES.label) {
                         if (items[i].quality > 0) {
                             if (items[i].name != SULFURAS.label) {
-                                items[i].quality = items[i].quality - 1
+                                decreaseQuality(items[i])
                             }
                         }
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality
+                        decreaseQuality(items[i])
                     }
                 } else {
                     increaseQuality(items[i])
@@ -58,6 +58,10 @@ class GildedRose(val items: List<Item>) {
         if (item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1
         }
+    }
+
+    fun decreaseQuality(item: Item) {
+        item.quality = item.quality - item.quality
     }
 }
 
