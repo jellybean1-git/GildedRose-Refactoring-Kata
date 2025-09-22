@@ -17,17 +17,15 @@ class GildedRose(val items: List<Item>) {
                     }
                 }
             } else {
-                if (items[i].quality < MAX_QUALITY) {
-                    increaseQuality(items[i])
+                increaseQuality(items[i])
 
-                    if (items[i].name == BACKSTAGE_PASSES.label) {
-                        if (items[i].sellIn < 11) {
-                            increaseQuality(items[i])
-                        }
+                if (items[i].name == BACKSTAGE_PASSES.label) {
+                    if (items[i].sellIn < 11) {
+                        increaseQuality(items[i])
+                    }
 
-                        if (items[i].sellIn < 6) {
-                            increaseQuality(items[i])
-                        }
+                    if (items[i].sellIn < 6) {
+                        increaseQuality(items[i])
                     }
                 }
             }
@@ -43,7 +41,7 @@ class GildedRose(val items: List<Item>) {
                             }
                         }
                     } else {
-                        decreaseQuality(items[i])
+                        items[i].quality = 0
                     }
                 } else {
                     increaseQuality(items[i])
@@ -59,7 +57,7 @@ class GildedRose(val items: List<Item>) {
     }
 
     private fun decreaseQuality(item: Item) {
-        item.quality = item.quality - item.quality
+        item.quality = item.quality - 1
     }
 
     private fun updateSellIn(item: Item) {
