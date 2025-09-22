@@ -9,42 +9,42 @@ const val MAX_QUALITY = 50
 class GildedRose(val items: List<Item>) {
 
     fun updateQuality() {
-        for (i in items.indices) {
-            if (items[i].name != AGED_BRIE.label && items[i].name != BACKSTAGE_PASSES.label) {
-                if (items[i].quality > 0) {
-                    if (items[i].name != SULFURAS.label) {
-                        decreaseQuality(items[i])
+        for (item in items) {
+            if (item.name != AGED_BRIE.label && item.name != BACKSTAGE_PASSES.label) {
+                if (item.quality > 0) {
+                    if (item.name != SULFURAS.label) {
+                        decreaseQuality(item)
                     }
                 }
             } else {
-                increaseQuality(items[i])
+                increaseQuality(item)
 
-                if (items[i].name == BACKSTAGE_PASSES.label) {
-                    if (items[i].sellIn < 11) {
-                        increaseQuality(items[i])
+                if (item.name == BACKSTAGE_PASSES.label) {
+                    if (item.sellIn < 11) {
+                        increaseQuality(item)
                     }
 
-                    if (items[i].sellIn < 6) {
-                        increaseQuality(items[i])
+                    if (item.sellIn < 6) {
+                        increaseQuality(item)
                     }
                 }
             }
 
-            updateSellIn(items[i])
+            updateSellIn(item)
 
-            if (items[i].sellIn < 0) {
-                if (items[i].name != AGED_BRIE.label) {
-                    if (items[i].name != BACKSTAGE_PASSES.label) {
-                        if (items[i].quality > 0) {
-                            if (items[i].name != SULFURAS.label) {
-                                decreaseQuality(items[i])
+            if (item.sellIn < 0) {
+                if (item.name != AGED_BRIE.label) {
+                    if (item.name != BACKSTAGE_PASSES.label) {
+                        if (item.quality > 0) {
+                            if (item.name != SULFURAS.label) {
+                                decreaseQuality(item)
                             }
                         }
                     } else {
-                        items[i].quality = 0
+                        item.quality = 0
                     }
                 } else {
-                    increaseQuality(items[i])
+                    increaseQuality(item)
                 }
             }
         }

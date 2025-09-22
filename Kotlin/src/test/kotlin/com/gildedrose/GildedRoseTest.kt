@@ -10,7 +10,6 @@ internal class GildedRoseTest {
     @CsvSource(
         "Elixir of the Mongoose, 10, 30, 6, 24, 4",
         "Elixir of the Mongoose, 3, 30, 6, 21, -3",
-        "+5 Dexterity Vest, 15",
         "Aged Brie, 10, 0, 2, 2, 8",
         "Aged Brie, 15, 40, 10, 50, 5",
         "Aged Brie, 5, 45, 10, 50, -5",
