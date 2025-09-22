@@ -2,9 +2,11 @@ package com.gildedrose
 
 import com.gildedrose.ItemName.AGED_BRIE
 import com.gildedrose.ItemName.BACKSTAGE_PASSES
+import com.gildedrose.ItemName.CONJURED
 import com.gildedrose.ItemName.SULFURAS
 import com.gildedrose.domain.AgedBrie
 import com.gildedrose.domain.BackstagePass
+import com.gildedrose.domain.Conjured
 import com.gildedrose.domain.CustomItem
 import com.gildedrose.domain.Sulfuras
 
@@ -19,6 +21,7 @@ class GildedRose(items: List<Item>) {
                 AGED_BRIE.label -> AgedBrie(it.name, it.sellIn, it.quality)
                 BACKSTAGE_PASSES.label -> BackstagePass(it.name, it.sellIn, it.quality)
                 SULFURAS.label -> Sulfuras(it.name, it.sellIn, it.quality)
+                CONJURED.label -> Conjured(it.name, it.sellIn, it.quality)
                 else -> CustomItem(it.name, it.sellIn, it.quality)
             }
         }
